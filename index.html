@@ -1,16 +1,30 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#090d18">
-  <meta name="description" content="Download the latest version of V4 Stream for Android.">
+  <meta name="description" content="Download the latest version of V4 Stream for Android. Available in 64-bit and 32-bit APKs.">
   <title>V4 Stream — Official App Download</title>
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="V4 Stream — Official App Download">
+  <meta property="og:description" content="Download the latest version of V4 Stream for Android (64-bit & 32-bit APKs).">
+  <meta property="og:image" content="assets/logo.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
+  <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
@@ -27,27 +41,60 @@
       <div class="topline">
         <span class="status-dot"></span>
         <span>ANDROID APPLICATION</span>
-        <span class="version">LATEST · v1.0.0</span>
       </div>
+
       <div class="hero-mark" aria-hidden="true">
         <div class="play-shape"></div>
       </div>
-      <h2 id="download-title">Your stream.<br><span>One tap away.</span></h2>
-      <p class="description">Download the latest version of V4 Stream and enjoy the experience on your Android device.</p>
 
-      <a class="download-button" id="downloadButton" href="assets/app-release.apk" download="app-release.apk">
-        <span class="button-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v3h16v-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <span class="button-label">DOWNLOAD APK</span>
-        <span class="button-arrow" aria-hidden="true">↗</span>
-      </a>
-      <div class="download-meta">
-        <span><i class="meta-icon">↓</i> <strong id="fileSize">APK file</strong></span>
-        <span class="meta-separator"></span>
-        <span><i class="meta-icon">◈</i> Android 5.0+</span>
+      <h2 id="download-title">Your stream.<br><span>One tap away.</span></h2>
+      <p class="description">Select your device architecture to download the latest V4 Stream APK.</p>
+
+      <div class="download-actions">
+        <!-- 64-bit (Primary / Recommended) -->
+        <a class="download-button primary" id="downloadButton64" href="assets/v4Stream-64bit.apk" download="v4Stream-64bit.apk" aria-label="Download 64-bit APK (Recommended for most phones and modern TV)">
+          <span class="button-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v3h16v-3" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div class="button-content">
+            <div class="button-title-row">
+              <span class="button-label">DOWNLOAD 64-BIT</span>
+              <span class="button-badge badge-recommended">RECOMMENDED</span>
+            </div>
+            <span class="button-subtext">ARM64 · Phones & Modern TV · <strong id="fileSize64">44.6 MB</strong></span>
+          </div>
+          <span class="button-arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <!-- 32-bit (Secondary) -->
+        <a class="download-button secondary" id="downloadButton32" href="assets/v4Stream-32bit.apk" download="v4Stream-32bit.apk" aria-label="Download 32-bit APK for older devices and legacy TV boxes">
+          <span class="button-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v3h16v-3" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div class="button-content">
+            <div class="button-title-row">
+              <span class="button-label">DOWNLOAD 32-BIT</span>
+              <span class="button-badge badge-legacy">ARMv7</span>
+            </div>
+            <span class="button-subtext">Legacy Devices & Older TV Boxes · <strong id="fileSize32">41.7 MB</strong></span>
+          </div>
+          <span class="button-arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
-      <p class="download-status" id="downloadStatus" role="status" aria-live="polite">Secure download · Direct APK</p>
+
+      <div class="download-meta">
+        <span><i class="meta-icon">◈</i> Android 5.0+</span>
+        <span class="meta-separator"></span>
+        <span><i class="meta-icon">✓</i> Virus Scanned & Verified</span>
+      </div>
+
+      <p class="download-status" id="downloadStatus" role="status" aria-live="polite">Secure direct download · Select an option above</p>
     </section>
 
     <footer class="footer">
@@ -58,4 +105,5 @@
   </main>
   <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,7 +1,3 @@
-APK PLACEHOLDER
-
-Upload your real Android APK here and name it exactly:
-app-release.apk
-
-Expected path: assets/app-release.apk
-No fake APK is included in this project.
+V4 Stream APK Binaries:
+- v4Stream-64bit.apk (ARM64: modern phones, tablets, and Google TV)
+- v4Stream-32bit.apk (ARMv7: older devices and legacy Android TV boxes)
