@@ -1,13 +1,28 @@
-/* V4 Stream — responsive single-screen download landing page */
+/* ==========================================================================
+   V4 Stream — Fully Responsive Download Landing Page
+   Screen Categories:
+   1. Small Mobile Phones (320px – 360px)
+   2. Standard Mobile Phones (361px – 430px)
+   3. Large Mobile Phones (431px – 639px)
+   4. Tablets (640px – 1024px+)
+   5. Compact Height / Landscape Adaptivity (< 680px)
+   ========================================================================== */
+
 :root {
   color-scheme: dark;
   --bg: #080c15;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #18243b 0%, #0b1220 40%, var(--bg) 78%);
   --text: #f4f7ff;
   --muted: #8e9bb3;
   --line: rgba(255, 255, 255, .09);
   --green: #35e7a2;
+  --green-glow: rgba(53, 231, 162, .28);
   --blue: #4d8dff;
+  --blue-glow: rgba(77, 141, 255, .25);
   --cyan: #3fe0d0;
+  --card-bg: linear-gradient(145deg, rgba(255, 255, 255, .085), rgba(255, 255, 255, .025));
+  --card-border: rgba(255, 255, 255, .11);
+  --card-shadow: 0 28px 80px rgba(0, 0, 0, .42), inset 0 1px rgba(255, 255, 255, .09);
 }
 
 * {
@@ -19,6 +34,7 @@ body {
   width: 100%;
   min-height: 100%;
   margin: 0;
+  padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -26,16 +42,17 @@ body {
 body {
   min-height: 100vh;
   min-height: 100dvh;
-  width: 100vw;
-  background: radial-gradient(ellipse at 50% 0%, #18243b 0%, #0b1220 40%, var(--bg) 78%);
+  background: var(--bg-gradient);
   color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   display: grid;
   place-items: center;
   position: relative;
 }
 
+/* Background Grid Pattern */
 body::before {
   content: "";
   position: fixed;
@@ -46,14 +63,17 @@ body::before {
     linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
   background-size: 44px 44px;
   mask-image: linear-gradient(to bottom, black, transparent 85%);
+  z-index: 0;
 }
 
+/* Ambient Backdrops */
 .ambient {
   position: fixed;
   border-radius: 50%;
-  filter: blur(75px);
+  filter: blur(80px);
   pointer-events: none;
   opacity: .22;
+  z-index: 0;
 }
 
 .ambient-one {
@@ -70,12 +90,16 @@ body::before {
   background: #16a875;
   right: -100px;
   bottom: -130px;
-  opacity: .14;
+  opacity: .15;
 }
 
+/* ==========================================================================
+   DEFAULT BASE / STANDARD MOBILE PHONES (361px – 430px)
+   ========================================================================== */
+
 .screen {
-  width: min(100%, 540px);
-  padding: 32px 20px;
+  width: min(100%, 460px);
+  padding: 24px 16px;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -86,42 +110,45 @@ body::before {
   z-index: 1;
 }
 
+/* Brand Header */
 .brand {
   display: flex;
   align-items: center;
-  gap: 13px;
-  margin-bottom: 22px;
+  gap: 12px;
+  margin-bottom: 20px;
   animation: rise .65s ease both;
 }
 
 .app-logo {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
   object-fit: cover;
-  box-shadow: 0 8px 28px #0006, 0 0 0 1px #ffffff1c;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .4), 0 0 0 1px rgba(255, 255, 255, .12);
+  flex-shrink: 0;
 }
 
 .brand-copy {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .eyebrow {
   margin: 0;
   color: #8b9ab4;
-  font-size: 9px;
-  letter-spacing: .19em;
+  font-size: 8.5px;
+  letter-spacing: .18em;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 h1 {
   margin: 0;
-  font-size: 24px;
-  line-height: 1;
+  font-size: 23px;
+  line-height: 1.05;
   font-weight: 800;
-  letter-spacing: -.055em;
+  letter-spacing: -.05em;
 }
 
 h1 span {
@@ -129,13 +156,14 @@ h1 span {
   font-weight: 500;
 }
 
+/* Download Card */
 .download-card {
   width: 100%;
-  padding: 26px 26px 22px;
-  border: 1px solid rgba(255, 255, 255, .11);
-  border-radius: 28px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, .085), rgba(255, 255, 255, .025));
-  box-shadow: 0 28px 80px rgba(0, 0, 0, .42), inset 0 1px rgba(255, 255, 255, .09);
+  padding: 24px 20px 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 26px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
   text-align: center;
@@ -160,7 +188,7 @@ h1 span {
   justify-content: center;
   gap: 8px;
   color: #8d9ab0;
-  font-size: 9.5px;
+  font-size: 9px;
   letter-spacing: .15em;
   font-weight: 700;
 }
@@ -171,35 +199,36 @@ h1 span {
   border-radius: 50%;
   background: var(--green);
   box-shadow: 0 0 10px #35e7a288;
+  flex-shrink: 0;
 }
 
 .hero-mark {
-  width: 52px;
-  height: 52px;
-  margin: 20px auto 14px;
+  width: 48px;
+  height: 48px;
+  margin: 18px auto 12px;
   display: grid;
   place-items: center;
-  border-radius: 18px;
+  border-radius: 16px;
   background: linear-gradient(145deg, #1e3651, #142438);
-  border: 1px solid #ffffff15;
-  box-shadow: inset 0 1px #ffffff1a, 0 10px 28px #0003;
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .15), 0 8px 24px rgba(0, 0, 0, .3);
 }
 
 .play-shape {
   width: 0;
   height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 15px solid #73e9c1;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 14px solid #73e9c1;
   margin-left: 3px;
-  filter: drop-shadow(0 0 9px #35e7a255);
+  filter: drop-shadow(0 0 8px rgba(53, 231, 162, .35));
 }
 
 h2 {
   margin: 0;
-  font-size: clamp(26px, 5vw, 36px);
+  font-size: clamp(24px, 5.5vw, 30px);
   line-height: 1.15;
-  letter-spacing: -.06em;
+  letter-spacing: -.05em;
   font-weight: 800;
 }
 
@@ -208,34 +237,36 @@ h2 span {
 }
 
 .description {
-  max-width: 360px;
-  margin: 11px auto 20px;
+  max-width: 340px;
+  margin: 10px auto 18px;
   color: #94a2b9;
-  font-size: 12px;
-  line-height: 1.65;
+  font-size: 11.5px;
+  line-height: 1.6;
 }
 
-/* Dual Download Buttons */
+/* Download Actions Container */
 .download-actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
   width: 100%;
 }
 
+/* Individual Download Buttons */
 .download-button {
-  min-height: 62px;
+  min-height: 60px;
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 13px;
-  padding: 12px 18px;
-  border-radius: 17px;
+  gap: 12px;
+  padding: 11px 16px;
+  border-radius: 16px;
   text-decoration: none;
   position: relative;
   overflow: hidden;
   transition: transform .2s ease, box-shadow .2s ease, filter .2s ease, border-color .2s ease, background .2s ease;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .download-button::after {
@@ -246,7 +277,7 @@ h2 span {
   width: 35%;
   height: 260%;
   transform: rotate(25deg);
-  background: #ffffff44;
+  background: rgba(255, 255, 255, .4);
   transition: left .55s ease;
   pointer-events: none;
 }
@@ -268,13 +299,13 @@ h2 span {
 .download-button.primary {
   background: linear-gradient(105deg, #37e7a5 0%, #4ae3c9 45%, #6dc0ff 100%);
   color: #061a14;
-  box-shadow: 0 10px 24px rgba(40, 218, 158, .25), inset 0 1px #ffffffaa;
+  box-shadow: 0 10px 24px rgba(40, 218, 158, .22), inset 0 1px rgba(255, 255, 255, .7);
   border: 1px solid rgba(255, 255, 255, .3);
 }
 
 .download-button.primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px rgba(40, 218, 158, .36), inset 0 1px #ffffffcc;
+  box-shadow: 0 16px 32px rgba(40, 218, 158, .34), inset 0 1px rgba(255, 255, 255, .8);
   filter: saturate(1.08);
 }
 
@@ -294,14 +325,14 @@ h2 span {
   transform: translateY(-2px);
   background: linear-gradient(135deg, rgba(77, 141, 255, .15) 0%, rgba(53, 231, 162, .08) 100%);
   border-color: rgba(109, 192, 255, .4);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, .36), 0 0 18px rgba(77, 141, 255, .15);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .36), 0 0 18px rgba(77, 141, 255, .15);
 }
 
 .download-button.secondary .button-icon svg {
   color: #79caff;
 }
 
-/* Button Internal Typography & Icons */
+/* Button Internals */
 .button-icon {
   width: 36px;
   height: 36px;
@@ -321,8 +352,8 @@ h2 span {
 }
 
 .button-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   display: block;
 }
 
@@ -332,27 +363,31 @@ h2 span {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .button-title-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
+  flex-wrap: wrap;
 }
 
 .button-label {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 800;
   letter-spacing: .06em;
+  white-space: nowrap;
 }
 
 .button-badge {
-  font-size: 8.5px;
+  font-size: 8px;
   font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 20px;
+  padding: 2px 6px;
+  border-radius: 16px;
   letter-spacing: .08em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .badge-recommended {
@@ -368,8 +403,10 @@ h2 span {
 }
 
 .button-subtext {
-  font-size: 10.5px;
+  font-size: 10px;
   letter-spacing: .01em;
+  line-height: 1.35;
+  white-space: normal;
 }
 
 .download-button.primary .button-subtext {
@@ -394,7 +431,7 @@ h2 span {
 
 .button-arrow {
   margin-left: auto;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   flex-shrink: 0;
   opacity: .75;
@@ -406,7 +443,7 @@ h2 span {
   opacity: 1;
 }
 
-/* Button Loading States */
+/* Loading States */
 .download-button.is-loading {
   pointer-events: none;
   opacity: .82;
@@ -416,15 +453,16 @@ h2 span {
   animation: downloadPulse .8s ease-in-out infinite;
 }
 
-/* Meta & Status */
+/* Meta Information */
 .download-meta {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 13px;
-  margin-top: 17px;
+  gap: 12px;
+  margin-top: 16px;
   color: #8190a8;
-  font-size: 10px;
+  font-size: 9.5px;
+  flex-wrap: wrap;
 }
 
 .download-meta strong {
@@ -439,17 +477,18 @@ h2 span {
 }
 
 .meta-separator {
-  height: 12px;
+  height: 11px;
   width: 1px;
-  background: #ffffff1a;
+  background: rgba(255, 255, 255, .12);
 }
 
 .download-status {
   min-height: 15px;
-  margin: 13px 0 0;
+  margin: 12px 0 0;
   color: #6f819c;
-  font-size: 9.5px;
-  letter-spacing: .025em;
+  font-size: 9px;
+  letter-spacing: .02em;
+  line-height: 1.4;
   transition: color .2s ease;
 }
 
@@ -465,15 +504,16 @@ h2 span {
   color: #ff9a9a;
 }
 
+/* Footer */
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 18px;
   color: #64738b;
-  font-size: 9.5px;
-  letter-spacing: .035em;
+  font-size: 9px;
+  letter-spacing: .03em;
   animation: rise .8s .16s ease both;
 }
 
@@ -481,10 +521,11 @@ h2 span {
   color: #354258;
 }
 
+/* Keyframes */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(13px);
+    transform: translateY(12px);
   }
 
   to {
@@ -500,58 +541,19 @@ h2 span {
   }
 }
 
-@media (max-width: 480px) {
+/* ==========================================================================
+   CATEGORY 1: SMALL MOBILE PHONES (320px – 360px)
+   ========================================================================== */
+
+@media (max-width: 360px) {
   .screen {
-    padding: 24px 16px;
+    width: 100%;
+    padding: 16px 10px;
   }
 
   .brand {
-    margin-bottom: 18px;
-  }
-
-  .download-card {
-    padding: 22px 18px 18px;
-    border-radius: 24px;
-  }
-
-  .hero-mark {
-    margin-top: 16px;
-    margin-bottom: 12px;
-  }
-
-  .description {
-    margin-top: 10px;
-    margin-bottom: 17px;
-    font-size: 11.5px;
-  }
-
-  .download-button {
-    min-height: 58px;
-    padding: 10px 14px;
-    border-radius: 15px;
-  }
-
-  .button-label {
-    font-size: 12px;
-  }
-
-  .button-subtext {
-    font-size: 9.5px;
-  }
-
-  .footer {
-    margin-top: 16px;
-  }
-}
-
-@media (max-height: 680px) {
-  .screen {
-    padding: 16px 16px;
-    justify-content: flex-start;
-  }
-
-  .brand {
-    margin-bottom: 12px;
+    gap: 10px;
+    margin-bottom: 15px;
   }
 
   .app-logo {
@@ -560,19 +562,30 @@ h2 span {
     border-radius: 12px;
   }
 
+  .eyebrow {
+    font-size: 8px;
+    letter-spacing: .15em;
+  }
+
   h1 {
-    font-size: 21px;
+    font-size: 20px;
   }
 
   .download-card {
-    padding: 18px 20px 15px;
+    padding: 18px 13px 16px;
+    border-radius: 20px;
+  }
+
+  .topline {
+    font-size: 8px;
+    letter-spacing: .11em;
   }
 
   .hero-mark {
     width: 42px;
     height: 42px;
+    margin: 14px auto 10px;
     border-radius: 14px;
-    margin: 12px auto 10px;
   }
 
   .play-shape {
@@ -582,31 +595,456 @@ h2 span {
   }
 
   h2 {
-    font-size: 26px;
+    font-size: 23px;
+    letter-spacing: -.04em;
   }
 
   .description {
-    margin: 8px auto 14px;
     font-size: 11px;
+    line-height: 1.5;
+    margin: 8px auto 15px;
+    padding: 0 4px;
+  }
+
+  .download-actions {
+    gap: 9px;
   }
 
   .download-button {
-    min-height: 52px;
+    min-height: 56px;
+    padding: 9px 12px;
+    gap: 10px;
+    border-radius: 14px;
+  }
+
+  .button-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .button-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .button-label {
+    font-size: 11.5px;
+    letter-spacing: .04em;
+  }
+
+  .button-badge {
+    font-size: 7px;
+    padding: 1.5px 5px;
+    border-radius: 10px;
+  }
+
+  .button-subtext {
+    font-size: 9px;
+    line-height: 1.3;
+  }
+
+  .button-arrow {
+    font-size: 15px;
   }
 
   .download-meta {
-    margin-top: 12px;
+    font-size: 8.5px;
+    gap: 8px;
+    margin-top: 13px;
   }
 
   .download-status {
-    margin-top: 8px;
+    font-size: 8.5px;
+    margin-top: 9px;
+  }
+
+  .footer {
+    font-size: 8.5px;
+    margin-top: 14px;
+  }
+}
+
+/* ==========================================================================
+   CATEGORY 3: LARGE MOBILE PHONES (431px – 639px)
+   ========================================================================== */
+
+@media (min-width: 431px) and (max-width: 639px) {
+  .screen {
+    width: min(100%, 520px);
+    padding: 30px 20px;
+  }
+
+  .brand {
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .app-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: .2em;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  .download-card {
+    padding: 28px 26px 24px;
+    border-radius: 28px;
+  }
+
+  .topline {
+    font-size: 9.5px;
+    letter-spacing: .16em;
+  }
+
+  .hero-mark {
+    width: 52px;
+    height: 52px;
+    margin: 20px auto 14px;
+    border-radius: 17px;
+  }
+
+  .play-shape {
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 15px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  .description {
+    font-size: 12.5px;
+    line-height: 1.7;
+    margin: 12px auto 22px;
+    max-width: 380px;
+  }
+
+  .download-actions {
+    gap: 13px;
+  }
+
+  .download-button {
+    min-height: 64px;
+    padding: 13px 18px;
+    border-radius: 18px;
+    gap: 14px;
+  }
+
+  .button-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .button-label {
+    font-size: 13px;
+  }
+
+  .button-badge {
+    font-size: 8.5px;
+    padding: 2.5px 7px;
+  }
+
+  .button-subtext {
+    font-size: 10.5px;
+  }
+
+  .download-meta {
+    font-size: 10px;
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .footer {
+    font-size: 10px;
+    margin-top: 22px;
+  }
+}
+
+/* ==========================================================================
+   CATEGORY 4: TABLETS & EXPANDED SCREENS (640px – 1024px+)
+   - Effective screen width usage
+   - Avoids stretched cards and button bloat
+   - Responsive 2-column grid for 32-bit & 64-bit options
+   - Balanced, readable proportions
+   ========================================================================== */
+
+@media (min-width: 640px) {
+  .screen {
+    width: min(100%, 740px);
+    padding: 38px 24px;
+  }
+
+  .brand {
+    gap: 15px;
+    margin-bottom: 26px;
+  }
+
+  .app-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 17px;
+  }
+
+  .eyebrow {
+    font-size: 9.5px;
+    letter-spacing: .22em;
+  }
+
+  h1 {
+    font-size: 27px;
+  }
+
+  .download-card {
+    padding: 34px 34px 28px;
+    border-radius: 30px;
+  }
+
+  .topline {
+    font-size: 10px;
+    letter-spacing: .18em;
+  }
+
+  .hero-mark {
+    width: 56px;
+    height: 56px;
+    margin: 22px auto 14px;
+    border-radius: 18px;
+  }
+
+  .play-shape {
+    border-top-width: 11px;
+    border-bottom-width: 11px;
+    border-left-width: 16px;
+  }
+
+  h2 {
+    font-size: 34px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .description {
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 12px auto 24px;
+    max-width: 460px;
+  }
+
+  /* 2-Column Responsive Grid on Tablets */
+  .download-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .download-button {
+    min-height: 78px;
+    height: 100%;
+    padding: 15px 18px;
+    border-radius: 20px;
+    gap: 12px;
+  }
+
+  .button-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+  }
+
+  .button-icon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .button-title-row {
+    gap: 6px;
+  }
+
+  .button-label {
+    font-size: 12.5px;
+    letter-spacing: .05em;
+  }
+
+  .button-badge {
+    font-size: 8px;
+    padding: 2px 6.5px;
+  }
+
+  .button-subtext {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .button-arrow {
+    font-size: 18px;
+  }
+
+  .download-meta {
+    font-size: 10.5px;
+    gap: 16px;
+    margin-top: 22px;
+  }
+
+  .download-status {
+    font-size: 10px;
+    margin-top: 14px;
+  }
+
+  .footer {
+    font-size: 10px;
+    margin-top: 24px;
+    gap: 10px;
+  }
+
+  .ambient-one {
+    width: 440px;
+    height: 440px;
+  }
+
+  .ambient-two {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+/* Widescreen Tablet Enhancement (e.g., iPad Air / Pro, 820px+) */
+@media (min-width: 820px) {
+  .screen {
+    width: min(100%, 780px);
+    padding: 44px 28px;
+  }
+
+  .download-card {
+    padding: 38px 40px 32px;
+  }
+
+  .download-actions {
+    gap: 18px;
+  }
+
+  .download-button {
+    min-height: 82px;
+    padding: 16px 20px;
+    gap: 14px;
+  }
+
+  .button-label {
+    font-size: 13px;
+  }
+
+  .button-subtext {
+    font-size: 10.5px;
+  }
+}
+
+/* ==========================================================================
+   CATEGORY 5: COMPACT HEIGHT SCREENS (Landscape Mode / Foldables)
+   ========================================================================== */
+
+@media (max-height: 680px) {
+  .screen {
+    padding: 16px 16px;
+    justify-content: flex-start;
+  }
+
+  .brand {
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+
+  .app-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .eyebrow {
+    font-size: 8px;
+  }
+
+  .download-card {
+    padding: 16px 18px 14px;
+    border-radius: 20px;
+  }
+
+  .hero-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    margin: 10px auto 8px;
+  }
+
+  .play-shape {
+    border-top-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 11px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .description {
+    margin: 6px auto 12px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .download-actions {
+    gap: 8px;
+  }
+
+  .download-button {
+    min-height: 50px;
+    padding: 8px 14px;
+  }
+
+  .button-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .button-label {
+    font-size: 11.5px;
+  }
+
+  .button-subtext {
+    font-size: 9px;
+  }
+
+  .download-meta {
+    margin-top: 10px;
+    font-size: 9px;
+  }
+
+  .download-status {
+    margin-top: 6px;
+    font-size: 8.5px;
   }
 
   .footer {
     margin-top: 12px;
+    font-size: 8.5px;
   }
 }
 
+/* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
 
   *,
