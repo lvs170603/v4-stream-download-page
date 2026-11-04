@@ -286,13 +286,28 @@ h2 span {
   left: 125%;
 }
 
-.download-button:focus-visible {
-  outline: 3px solid white;
-  outline-offset: 3px;
+/* TV Remote D-Pad & Keyboard Focus Highlighting */
+.download-button:focus {
+  outline: none;
 }
 
-.download-button:active {
-  transform: translateY(1px) scale(.99);
+.download-button:focus-visible,
+.download-button.tv-focused,
+body.tv-mode .download-button:focus {
+  outline: none;
+  z-index: 5;
+}
+
+.download-button:focus-visible::after,
+.download-button.tv-focused::after,
+body.tv-mode .download-button:focus::after {
+  left: 125%;
+  transition: left .6s ease;
+}
+
+.download-button:active,
+.download-button.tv-pressed {
+  transform: translateY(1px) scale(.98) !important;
 }
 
 /* Primary (64-bit) Button */
@@ -307,6 +322,27 @@ h2 span {
   transform: translateY(-2px);
   box-shadow: 0 16px 32px rgba(40, 218, 158, .34), inset 0 1px rgba(255, 255, 255, .8);
   filter: saturate(1.08);
+}
+
+.download-button.primary:focus-visible,
+.download-button.primary.tv-focused,
+body.tv-mode .download-button.primary:focus {
+  transform: scale(1.035) translateY(-3px);
+  box-shadow:
+    0 0 0 3.5px #ffffff,
+    0 0 0 7px rgba(53, 231, 162, .75),
+    0 0 32px rgba(53, 231, 162, .65),
+    0 18px 36px rgba(0, 0, 0, .55),
+    inset 0 1px rgba(255, 255, 255, .9);
+  filter: saturate(1.15) brightness(1.05);
+  animation: tvPulsePrimary 2s infinite ease-in-out;
+}
+
+.download-button.primary.tv-pressed {
+  box-shadow:
+    0 0 0 3.5px #ffffff,
+    0 0 20px rgba(53, 231, 162, .95),
+    0 6px 16px rgba(0, 0, 0, .4) !important;
 }
 
 .download-button.primary .button-icon svg {
@@ -326,6 +362,29 @@ h2 span {
   background: linear-gradient(135deg, rgba(77, 141, 255, .15) 0%, rgba(53, 231, 162, .08) 100%);
   border-color: rgba(109, 192, 255, .4);
   box-shadow: 0 14px 28px rgba(0, 0, 0, .36), 0 0 18px rgba(77, 141, 255, .15);
+}
+
+.download-button.secondary:focus-visible,
+.download-button.secondary.tv-focused,
+body.tv-mode .download-button.secondary:focus {
+  transform: scale(1.035) translateY(-3px);
+  background: linear-gradient(135deg, rgba(77, 141, 255, .24) 0%, rgba(53, 231, 162, .14) 100%);
+  border-color: rgba(142, 214, 255, .85);
+  color: #ffffff;
+  box-shadow:
+    0 0 0 3.5px #ffffff,
+    0 0 0 7px rgba(77, 141, 255, .75),
+    0 0 32px rgba(77, 141, 255, .65),
+    0 18px 36px rgba(0, 0, 0, .55),
+    inset 0 1px rgba(255, 255, 255, .25);
+  animation: tvPulseSecondary 2s infinite ease-in-out;
+}
+
+.download-button.secondary.tv-pressed {
+  box-shadow:
+    0 0 0 3.5px #ffffff,
+    0 0 20px rgba(77, 141, 255, .95),
+    0 6px 16px rgba(0, 0, 0, .4) !important;
 }
 
 .download-button.secondary .button-icon svg {
@@ -438,9 +497,55 @@ h2 span {
   transition: transform .2s ease, opacity .2s ease;
 }
 
-.download-button:hover .button-arrow {
-  transform: translate(2px, -2px);
+.download-button:hover .button-arrow,
+.download-button:focus-visible .button-arrow,
+.download-button.tv-focused .button-arrow,
+body.tv-mode .download-button:focus .button-arrow {
+  transform: translate(3px, -3px) scale(1.15);
   opacity: 1;
+}
+
+.download-button.secondary:focus-visible .button-arrow,
+.download-button.secondary.tv-focused .button-arrow,
+body.tv-mode .download-button.secondary:focus .button-arrow {
+  color: #b3dbff;
+}
+
+.download-button:focus-visible .button-icon,
+.download-button.tv-focused .button-icon,
+body.tv-mode .download-button:focus .button-icon {
+  transform: scale(1.08);
+  transition: transform .2s ease;
+}
+
+.download-button.primary:focus-visible .button-badge,
+.download-button.primary.tv-focused .button-badge,
+body.tv-mode .download-button.primary:focus .button-badge {
+  background: #031e15;
+  color: #4efac0;
+  border-color: #35e7a2;
+  box-shadow: 0 0 10px rgba(53, 231, 162, .5);
+}
+
+.download-button.secondary:focus-visible .button-badge,
+.download-button.secondary.tv-focused .button-badge,
+body.tv-mode .download-button.secondary:focus .button-badge {
+  background: rgba(77, 141, 255, .35);
+  color: #d6e8ff;
+  border-color: #79caff;
+  box-shadow: 0 0 10px rgba(77, 141, 255, .5);
+}
+
+.download-button.secondary:focus-visible .button-subtext,
+.download-button.secondary.tv-focused .button-subtext,
+body.tv-mode .download-button.secondary:focus .button-subtext {
+  color: #c4d5ed;
+}
+
+.download-button.secondary:focus-visible .button-subtext strong,
+.download-button.secondary.tv-focused .button-subtext strong,
+body.tv-mode .download-button.secondary:focus .button-subtext strong {
+  color: #ffffff;
 }
 
 /* Loading States */
@@ -504,6 +609,98 @@ h2 span {
   color: #ff9a9a;
 }
 
+/* TV Remote Navigation Guide Pill */
+.tv-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 14px auto 0;
+  padding: 6px 14px;
+  max-width: fit-content;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: rise .4s ease both;
+  user-select: none;
+}
+
+body.tv-mode .tv-hint,
+body.tv-device .tv-hint {
+  display: inline-flex;
+}
+
+.tv-hint-icon {
+  display: grid;
+  place-items: center;
+  color: #73e9c1;
+  flex-shrink: 0;
+}
+
+.tv-hint-icon svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.tv-hint-badge {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(53, 231, 162, .16);
+  color: #35e7a2;
+  border: 1px solid rgba(53, 231, 162, .35);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tv-hint-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9.5px;
+  color: #9cb0cf;
+  white-space: nowrap;
+}
+
+.tv-hint-nav,
+.tv-hint-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tv-key {
+  display: inline-block;
+  padding: 1.5px 5px;
+  font-family: inherit;
+  font-size: 8.5px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #f4f7ff;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .4), inset 0 1px rgba(255, 255, 255, .25);
+  letter-spacing: .04em;
+}
+
+.tv-key-ok {
+  background: linear-gradient(135deg, rgba(53, 231, 162, .32), rgba(77, 141, 255, .22));
+  border-color: rgba(53, 231, 162, .5);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.tv-hint-dot {
+  color: rgba(255, 255, 255, .25);
+  font-size: 8px;
+}
+
 /* Footer */
 .footer {
   display: flex;
@@ -538,6 +735,44 @@ h2 span {
   50% {
     transform: translateY(3px);
     opacity: .5;
+  }
+}
+
+@keyframes tvPulsePrimary {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3.5px #ffffff,
+      0 0 0 7px rgba(53, 231, 162, .75),
+      0 0 30px rgba(53, 231, 162, .6),
+      0 18px 36px rgba(0, 0, 0, .55),
+      inset 0 1px rgba(255, 255, 255, .9);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3.5px #ffffff,
+      0 0 0 9.5px rgba(53, 231, 162, .9),
+      0 0 45px rgba(53, 231, 162, .85),
+      0 22px 42px rgba(0, 0, 0, .65),
+      inset 0 1px rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes tvPulseSecondary {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3.5px #ffffff,
+      0 0 0 7px rgba(77, 141, 255, .75),
+      0 0 30px rgba(77, 141, 255, .6),
+      0 18px 36px rgba(0, 0, 0, .55),
+      inset 0 1px rgba(255, 255, 255, .25);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3.5px #ffffff,
+      0 0 0 9.5px rgba(77, 141, 255, .9),
+      0 0 45px rgba(77, 141, 255, .85),
+      0 22px 42px rgba(0, 0, 0, .65),
+      inset 0 1px rgba(255, 255, 255, .4);
   }
 }
 
@@ -1042,6 +1277,70 @@ h2 span {
     margin-top: 12px;
     font-size: 8.5px;
   }
+}
+
+/* ==========================================================================
+   TV DEVICE & 10-FOOT INTERFACE ENHANCEMENTS
+   ========================================================================== */
+
+body.tv-device .screen {
+  width: min(100%, 820px);
+  padding: 44px 30px;
+}
+
+body.tv-device .download-card {
+  padding: 38px 40px 32px;
+  border-radius: 32px;
+}
+
+body.tv-device .download-actions {
+  gap: 18px;
+}
+
+body.tv-device .download-button {
+  min-height: 86px;
+  padding: 16px 22px;
+  border-radius: 22px;
+}
+
+body.tv-device .button-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+}
+
+body.tv-device .button-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+body.tv-device .button-label {
+  font-size: 13.5px;
+  letter-spacing: .06em;
+}
+
+body.tv-device .button-badge {
+  font-size: 8.5px;
+  padding: 2.5px 7px;
+}
+
+body.tv-device .button-subtext {
+  font-size: 11px;
+}
+
+body.tv-device .button-arrow {
+  font-size: 20px;
+}
+
+body.tv-device .tv-hint {
+  padding: 7px 16px;
+  font-size: 10.5px;
+  margin-top: 16px;
+}
+
+body.tv-device .tv-key {
+  font-size: 9.5px;
+  padding: 2px 6px;
 }
 
 /* Reduced Motion Preference */

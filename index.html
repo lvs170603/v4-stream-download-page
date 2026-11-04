@@ -50,9 +50,9 @@
       <h2 id="download-title">Your stream.<br><span>One tap away.</span></h2>
       <p class="description">Select your device architecture to download the latest V4 Stream APK.</p>
 
-      <div class="download-actions">
+      <div class="download-actions" role="group" aria-label="Download Options">
         <!-- 64-bit (Primary / Recommended) -->
-        <a class="download-button primary" id="downloadButton64" href="assets/v4Stream-64bit.apk" download="v4Stream-64bit.apk" aria-label="Download 64-bit APK (Recommended for most phones and modern TV)">
+        <a class="download-button primary" id="downloadButton64" href="assets/v4Stream-64bit.apk" download="v4Stream-64bit.apk" tabindex="0" data-tv-focusable="true" aria-label="Download 64-bit APK (Recommended for most phones and modern TV)">
           <span class="button-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v3h16v-3" stroke="currentColor" stroke-width="2"
@@ -70,7 +70,7 @@
         </a>
 
         <!-- 32-bit (Secondary) -->
-        <a class="download-button secondary" id="downloadButton32" href="assets/v4Stream-32bit.apk" download="v4Stream-32bit.apk" aria-label="Download 32-bit APK for older devices and legacy TV boxes">
+        <a class="download-button secondary" id="downloadButton32" href="assets/v4Stream-32bit.apk" download="v4Stream-32bit.apk" tabindex="0" data-tv-focusable="true" aria-label="Download 32-bit APK for older devices and legacy TV boxes">
           <span class="button-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
               <path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v3h16v-3" stroke="currentColor" stroke-width="2"
@@ -95,6 +95,24 @@
       </div>
 
       <p class="download-status" id="downloadStatus" role="status" aria-live="polite">Secure direct download · Select an option above</p>
+
+      <!-- TV Remote Navigation Guide -->
+      <div class="tv-hint" id="tvHint" aria-label="TV Remote Navigation: D-Pad arrows navigate, OK button selects">
+        <span class="tv-hint-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="2" width="12" height="20" rx="4" />
+            <circle cx="12" cy="7.5" r="2.2" />
+            <path d="M12 5.5v.5M12 9v.5M10 7.5h.5M13.5 7.5h.5" />
+            <path d="M9 13.5h6M9 16.5h4" />
+          </svg>
+        </span>
+        <span class="tv-hint-badge">TV REMOTE</span>
+        <span class="tv-hint-controls">
+          <span class="tv-hint-nav"><kbd class="tv-key">▲</kbd><kbd class="tv-key">▼</kbd><kbd class="tv-key">◄</kbd><kbd class="tv-key">►</kbd> Navigate</span>
+          <span class="tv-hint-dot">•</span>
+          <span class="tv-hint-action"><kbd class="tv-key tv-key-ok">OK</kbd> Select</span>
+        </span>
+      </div>
     </section>
 
     <footer class="footer">
