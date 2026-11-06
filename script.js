@@ -1,23 +1,27 @@
-// V4 Stream download UX for 64-bit and 32-bit Android APKs.
+// V4 Stream download UX for Android APKs (64-bit & 32-bit) and Windows PC App.
 (() => {
   const button64 = document.getElementById("downloadButton64");
   const button32 = document.getElementById("downloadButton32");
+  const buttonPc = document.getElementById("downloadButtonPc");
   const status = document.getElementById("downloadStatus");
   const fileSize64 = document.getElementById("fileSize64");
   const fileSize32 = document.getElementById("fileSize32");
+  const fileSizePc = document.getElementById("fileSizePc");
   const year = document.getElementById("year");
 
   const apkPath64 = "assets/v4Stream-64bit.apk";
   const apkPath32 = "assets/v4Stream-32bit.apk";
+  const pcPath = "assets/v4Stream-Pc.exe";
   let locked = false;
 
   if (year) {
     year.textContent = new Date().getFullYear();
   }
 
-  // Detect and format actual APK sizes via HEAD requests
+  // Detect and format actual file sizes via HEAD requests
   checkFileSize(apkPath64, fileSize64, "44.6 MB");
   checkFileSize(apkPath32, fileSize32, "41.7 MB");
+  checkFileSize(pcPath, fileSizePc, "174 KB");
 
   function checkFileSize(url, element, fallback) {
     if (!element) return;
@@ -61,13 +65,14 @@
     });
   }
 
-  setupDownloadHandler(button64, "64-bit");
-  setupDownloadHandler(button32, "32-bit");
+  setupDownloadHandler(button64, "64-bit APK");
+  setupDownloadHandler(button32, "32-bit APK");
+  setupDownloadHandler(buttonPc, "Windows PC app");
 
   // ==========================================================================
   // TV Remote D-Pad Navigation & Focus Highlighting Controller
   // ==========================================================================
-  const focusableButtons = [button64, button32].filter(Boolean);
+  const focusableButtons = [button64, button32, buttonPc].filter(Boolean);
   let currentFocusedIndex = -1;
 
   function detectTV() {
@@ -121,6 +126,8 @@
         status.textContent = "64-bit APK (ARM64) selected · Press OK to download";
       } else if (targetBtn === button32) {
         status.textContent = "32-bit APK (ARMv7) selected · Press OK to download";
+      } else if (targetBtn === buttonPc) {
+        status.textContent = "Windows PC app selected · Press OK to download";
       }
     }
   }
