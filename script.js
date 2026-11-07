@@ -21,7 +21,7 @@
   // Detect and format actual file sizes via HEAD requests
   checkFileSize(apkPath64, fileSize64, "44.6 MB");
   checkFileSize(apkPath32, fileSize32, "41.7 MB");
-  checkFileSize(pcPath, fileSizePc, "25 MP");
+  checkFileSize(pcPath, fileSizePc, "24.7 MB");
 
   function checkFileSize(url, element, fallback) {
     if (!element) return;

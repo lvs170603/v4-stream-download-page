@@ -8,7 +8,7 @@ A lightweight, responsive single-page download landing page built with HTML, CSS
 - `script.js` — dynamic file size detection, loading states, download handling, and TV remote spatial navigation
 - `assets/v4Stream-64bit.apk` — 64-bit (ARM64-v8a) APK (recommended for most modern phones and Google TV)
 - `assets/v4Stream-32bit.apk` — 32-bit (armeabi-v7a) APK (for legacy devices and older TV boxes)
-- `assets/v4Stream-Pc.exe` — Windows desktop application (for Windows 10/11 PCs and laptops)
+- `assets/V4-Stream-Setup.exe` — Windows desktop application installer (for Windows 10/11 PCs and laptops)
 - `assets/logo.png` — official V4 Stream mark
 
 ## Platform & Architecture Support
