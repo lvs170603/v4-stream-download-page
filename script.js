@@ -11,7 +11,7 @@
 
   const apkPath64 = "assets/v4Stream-64bit.apk";
   const apkPath32 = "assets/v4Stream-32bit.apk";
-  const pcPath = "assets/v4Stream-Pc.exe";
+  const pcPath = "assets/V4-Stream-Setup.exe";
   let locked = false;
 
   if (year) {
@@ -21,7 +21,7 @@
   // Detect and format actual file sizes via HEAD requests
   checkFileSize(apkPath64, fileSize64, "44.6 MB");
   checkFileSize(apkPath32, fileSize32, "41.7 MB");
-  checkFileSize(pcPath, fileSizePc, "174 KB");
+  checkFileSize(pcPath, fileSizePc, "25 MP");
 
   function checkFileSize(url, element, fallback) {
     if (!element) return;
