@@ -56,6 +56,15 @@ The website is fully prepared to support all 8 publisher advertising formats ava
    - Paste the `scriptUrl` and optional `zoneId` provided by Monetag.
 5. If Monetag provides an `ads.txt` code, open `ads.txt` and paste the records.
 
+## Responsive Layout & Platform Adaptivity
+- **Small Mobile (≤ 360px)**: Compact, thumb-friendly touch targets with zero-wrap button labels and auto-wrapped metadata.
+- **Standard Mobile (361px – 430px)**: Optimized for iPhone 12–16, Samsung Galaxy, and Google Pixel with notch/home-indicator safe area insets.
+- **Large Mobile (431px – 639px)**: Balanced card proportions for Plus/Max and Ultra smartphones.
+- **Tablets (640px – 1023px)**: Well-proportioned centered download column preventing stretched buttons or awkward card bloat.
+- **Desktop & Laptops (1024px – 1439px)**: Centered widescreen glass card with refined typography, tactile hover elevations, and expanded ambient background glow.
+- **Large Desktop & Ultra-Wide (1440px+)**: Enhanced scaling for 2K/4K monitors with rich ambient wash and spacious action controls.
+- **TV & 10-Foot UI**: Auto-detected spatial D-Pad navigation, high-visibility pulsating focus rings, and popunder suppression.
+
 ## Platform & Architecture Support
 - **Android 64-bit (ARM64)**: Optimized for all modern Android phones, tablets, and newer Android TV / Google TV devices.
 - **Android 32-bit (ARMv7)**: Compatible with older Android smartphones and budget TV boxes.
