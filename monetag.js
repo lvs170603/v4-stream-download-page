@@ -32,13 +32,12 @@
     // FORMAT 1: MultiTag (Recommended by Monetag)
     // All-in-one AI tag that bundles Popunder, In-Page Push, Push, and Vignette.
     // Dashboard: Monetag -> Sites -> Add Zone -> MultiTag
+    // Tag embedded directly after <head> in index.html to follow Monetag instructions.
     // ------------------------------------------------------------------------
     multiTag: {
-      enabled: false,
-      // Paste your MultiTag script source URL (e.g., "https://alwingulla.com/88/tag.min.js")
-      scriptUrl: "",
-      // Optional: Zone ID if provided separately by Monetag
-      zoneId: ""
+      enabled: false, // Embedded directly in index.html <head> to prevent duplicate loading
+      scriptUrl: "https://quge5.com/88/tag.min.js",
+      zoneId: "307280"
     },
 
     // ------------------------------------------------------------------------
@@ -49,7 +48,7 @@
     popunder: {
       enabled: false,
       scriptUrl: "",
-      zoneId: "",
+      zoneId: "12214894",
       // Safety safeguard: Exclude download buttons so downloads are NEVER intercepted
       excludedSelectors: [
         "#downloadButton64",
@@ -68,7 +67,7 @@
     inPagePush: {
       enabled: false,
       scriptUrl: "",
-      zoneId: ""
+      zoneId: "12214895"
     },
 
     // ------------------------------------------------------------------------
@@ -80,7 +79,7 @@
     pushNotifications: {
       enabled: false,
       scriptUrl: "",
-      zoneId: "",
+      zoneId: "12214897",
       serviceWorkerUrl: "/sw.js"
     },
 
@@ -92,7 +91,7 @@
     vignette: {
       enabled: false,
       scriptUrl: "",
-      zoneId: ""
+      zoneId: "12214896"
     },
 
     // ------------------------------------------------------------------------
@@ -172,13 +171,19 @@
 
   function loadExternalScript(src, attributes = {}) {
     if (!src || typeof src !== "string" || src.trim() === "") return Promise.resolve(null);
-    if (loadedScripts.has(src)) return Promise.resolve(null);
+    const cleanSrc = src.trim();
+
+    // Prevent duplicate loading if already loaded or present in DOM
+    if (loadedScripts.has(cleanSrc) || document.querySelector(`script[src="${cleanSrc}"]`)) {
+      loadedScripts.add(cleanSrc);
+      return Promise.resolve(null);
+    }
 
     return new Promise((resolve) => {
       try {
         const script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = src.trim();
+        script.src = cleanSrc;
         script.async = true;
 
         Object.keys(attributes).forEach(attr => {
@@ -188,7 +193,7 @@
         });
 
         script.onload = () => {
-          loadedScripts.add(src);
+          loadedScripts.add(cleanSrc);
           resolve(script);
         };
         script.onerror = () => {
@@ -234,6 +239,14 @@
 
   // Initialize Monetag Ad Formats
   function initMonetag() {
+    // Register all scripts currently present in DOM to prevent duplicate loading
+    document.querySelectorAll("script[src]").forEach(s => {
+      if (s.src) loadedScripts.add(s.src);
+    });
+
+    // Always protect APK and PC download buttons against Popunder interception
+    setupDownloadProtection();
+
     const isTV = isTVDevice();
 
     // 1. MultiTag

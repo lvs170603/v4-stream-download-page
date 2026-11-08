@@ -18,6 +18,14 @@ A lightweight, responsive single-page download landing page built with HTML, CSS
 
 The website is fully prepared to support all 8 publisher advertising formats available on [Monetag](https://monetag.com/). All advertising scripts are modularized in `monetag.js` and can be enabled individually by updating the configuration object `MONETAG_CONFIG`.
 
+### Configured Monetag MultiTag & Ad Zones
+- **MultiTag Script**: `<script src="https://quge5.com/88/tag.min.js" data-zone="307280" async data-cfasync="false"></script>` (embedded directly after `<head>` in `index.html`)
+- **MultiTag Zone ID**: `307280`
+- **Push Notifications Zone ID**: `12214897` (Service Worker: `sw.js` pointing to `3nbf4.com`)
+- **Vignette Banner Zone ID**: `12214896`
+- **In-Page Push Zone ID**: `12214895`
+- **OnClick / Popunder Zone ID**: `12214894`
+
 ### Supported Monetag Formats
 1. **MultiTag (Recommended)**: All-in-one AI tag dynamically delivering Popunder, In-Page Push, Push, and Vignette.
 2. **OnClick / Popunder**: Opens in a new window/tab behind the current browser tab upon user interaction.
