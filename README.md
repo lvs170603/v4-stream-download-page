@@ -3,13 +3,50 @@
 A lightweight, responsive single-page download landing page built with HTML, CSS, and vanilla JavaScript. Supports Android (64-bit and 32-bit APKs) and Windows PC applications.
 
 ## Files
-- `index.html` — page structure with 64-bit Android, 32-bit Android, and Windows PC download buttons
-- `style.css` — responsive dark glass UI with micro-animations and multi-column grid
+- `index.html` — page structure with 64-bit Android, 32-bit Android, Windows PC download buttons, and Monetag responsive ad placements
+- `style.css` — responsive dark glass UI with micro-animations, multi-column grid, and CLS-free ad container styling
 - `script.js` — dynamic file size detection, loading states, download handling, and TV remote spatial navigation
+- `monetag.js` — modular Monetag ad controller supporting all 8 publisher formats with download button protection and TV safeguards
+- `sw.js` — official Monetag website verification and push service worker script
+- `ads.txt` — authorized digital sellers declaration placeholder for Monetag Publisher records
 - `assets/v4Stream-64bit.apk` — 64-bit (ARM64-v8a) APK (recommended for most modern phones and Google TV)
 - `assets/v4Stream-32bit.apk` — 32-bit (armeabi-v7a) APK (for legacy devices and older TV boxes)
 - `assets/V4-Stream-Setup.exe` — Windows desktop application installer (for Windows 10/11 PCs and laptops)
 - `assets/logo.png` — official V4 Stream mark
+
+## Monetag Advertising Integration
+
+The website is fully prepared to support all 8 publisher advertising formats available on [Monetag](https://monetag.com/). All advertising scripts are modularized in `monetag.js` and can be enabled individually by updating the configuration object `MONETAG_CONFIG`.
+
+### Supported Monetag Formats
+1. **MultiTag (Recommended)**: All-in-one AI tag dynamically delivering Popunder, In-Page Push, Push, and Vignette.
+2. **OnClick / Popunder**: Opens in a new window/tab behind the current browser tab upon user interaction.
+3. **In-Page Push (IPP)**: Sleek, non-intrusive floating banners resembling OS notifications (works on all devices and browsers without user permissions).
+4. **Push Notification Ads (Web Push)**: Native browser opt-in alerts (requires service worker `sw.js`).
+5. **Vignette Banners (Interstitial)**: Full overlay banners with a prominent close button.
+6. **Classic Display Banners**:
+   - `ad-header` (`#monetagHeaderBanner`) — Top banner above the download card
+   - `ad-content` (`#monetagContentBanner`) — In-card native/banner placement between downloads and metadata
+   - `ad-mid-section` (`#monetagMidBanner`) — Mid-section banner between download card and footer
+   - `ad-footer` (`#monetagFooterBanner`) — Bottom banner below footer
+7. **Native Ads / Smart Banners**: Blended recommendation-style content units.
+8. **Direct Links (SmartLink)**: Direct traffic routing URLs.
+
+### Safety & Policy Safeguards
+- **Download Protection**: Clicks on Android APK or Windows PC download buttons are shielded with `stopPropagation()`, ensuring user downloads are never hijacked by popunders.
+- **TV Remote Navigation**: Android TV and 10-foot browser user agents are detected automatically. Popunders and push alerts remain suppressed on TV devices to preserve D-Pad navigation.
+- **Zero Layout Shift (CLS)**: Unconfigured or pending ad containers collapse cleanly (`.is-empty`) to 0 height, preserving page aesthetics and preventing content jumps.
+- **Ad-Blocker Resilience**: Network or script blocking failures resolve cleanly with zero JavaScript console errors.
+- **Deduplication**: Script URLs are tracked in a Set to prevent redundant HTTP requests or duplicate script initialization.
+
+### Monetag Setup Instructions
+1. Log in to your [Monetag Dashboard](https://monetag.com/).
+2. Navigate to **Sites** and select/add your domain (`v4apk.vercel.app`).
+3. Click **Add Zone** and choose the ad format you wish to monetize with.
+4. Open `monetag.js` and locate the corresponding section in `MONETAG_CONFIG`:
+   - Set `enabled: true`.
+   - Paste the `scriptUrl` and optional `zoneId` provided by Monetag.
+5. If Monetag provides an `ads.txt` code, open `ads.txt` and paste the records.
 
 ## Platform & Architecture Support
 - **Android 64-bit (ARM64)**: Optimized for all modern Android phones, tablets, and newer Android TV / Google TV devices.
@@ -22,9 +59,10 @@ A lightweight, responsive single-page download landing page built with HTML, CSS
 - **One-Click TV Download**: Press `OK` / `Select` / `Enter` to download immediately with tactile button depression feedback.
 - **Auto-Detection**: Automatically detects TV browsers and pre-focuses the recommended 64-bit option on TV devices.
 
-## Deploy with GitHub Pages
-1. Push this repository to GitHub: `https://github.com/lvs170603/v4-stream-download-page`.
-2. Open **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Select branch `main` and folder `/ (root)`, then Save.
-5. The live download page will be published at: `https://lvs170603.github.io/v4-stream-download-page/`.
+## Deploy with GitHub Pages / Vercel
+1. Push repository changes to GitHub.
+2. If using GitHub Pages:
+   - Open **Settings → Pages**.
+   - Under **Build and deployment**, choose **Deploy from a branch** (`main` / root).
+3. If using Vercel:
+   - Connect repository and deploy directly as a static project.

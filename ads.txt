@@ -1,0 +1,2 @@
+# Monetag ads.txt
+# When you receive your authorized ads.txt records from your Monetag Publisher Dashboard (Sites -> Add ads.txt), paste them here.

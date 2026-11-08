@@ -23,6 +23,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Monetag Advertising Architecture -->
+  <script src="monetag.js" defer></script>
 </head>
 
 <body>
@@ -36,6 +39,12 @@
         <h1>V4 <span>Stream</span></h1>
       </div>
     </header>
+
+    <!-- Monetag: Header Responsive Banner Placement -->
+    <aside class="ad-container ad-header is-empty" id="monetagHeaderBanner" aria-label="Header Advertisement">
+      <span class="ad-label">ADVERTISEMENT</span>
+      <div class="ad-slot-frame" id="monetagHeaderSlot"></div>
+    </aside>
 
     <section class="download-card" aria-labelledby="download-title">
       <div class="topline">
@@ -107,6 +116,12 @@
         </a>
       </div>
 
+      <!-- Monetag: In-Content / Native Banner Placement -->
+      <aside class="ad-container ad-content is-empty" id="monetagContentBanner" aria-label="Download Content Advertisement">
+        <span class="ad-label">ADVERTISEMENT</span>
+        <div class="ad-slot-frame" id="monetagContentSlot"></div>
+      </aside>
+
       <div class="download-meta">
         <span><i class="meta-icon">◈</i> Android & Windows</span>
         <span class="meta-separator"></span>
@@ -134,11 +149,23 @@
       </div>
     </section>
 
+    <!-- Monetag: Mid-Section Content Ad Placement -->
+    <aside class="ad-container ad-mid-section is-empty" id="monetagMidBanner" aria-label="Sponsored Advertisement">
+      <span class="ad-label">ADVERTISEMENT</span>
+      <div class="ad-slot-frame" id="monetagMidSlot"></div>
+    </aside>
+
     <footer class="footer">
       <span>© <span id="year"></span> V4 Stream</span>
       <span class="footer-divider">•</span>
       <span>Made for Android & PC</span>
     </footer>
+
+    <!-- Monetag: Footer Responsive Banner Ad Placement -->
+    <aside class="ad-container ad-footer is-empty" id="monetagFooterBanner" aria-label="Footer Advertisement">
+      <span class="ad-label">ADVERTISEMENT</span>
+      <div class="ad-slot-frame" id="monetagFooterSlot"></div>
+    </aside>
   </main>
   <script src="script.js"></script>
 </body>
