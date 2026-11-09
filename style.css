@@ -811,98 +811,6 @@ body.tv-device .tv-hint {
   color: #354258;
 }
 
-/* ==========================================================================
-   Monetag Advertising — Responsive Placements & Container Styling
-   Supports: MultiTag, Classic Banners, In-Page Push, Native & Vignettes
-   ========================================================================== */
-
-.ad-container {
-  width: 100%;
-  margin: 14px auto;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, .02);
-  border: 1px dashed rgba(255, 255, 255, .08);
-  padding: 6px 10px;
-  box-sizing: border-box;
-  transition: opacity .3s ease, min-height .3s ease, margin .3s ease;
-  z-index: 2;
-}
-
-/* Header, Mid-Section, and Footer Banner Ad Placements */
-.ad-container.ad-header,
-.ad-container.ad-mid-section,
-.ad-container.ad-footer {
-  width: min(100%, 460px);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.ad-container.ad-header {
-  margin-top: 4px;
-  margin-bottom: 16px;
-  animation: rise .65s ease both;
-}
-
-.ad-container.ad-mid-section {
-  margin-top: 18px;
-  margin-bottom: 14px;
-  animation: rise .8s .12s ease both;
-}
-
-.ad-container.ad-footer {
-  margin-top: 12px;
-  margin-bottom: 8px;
-  animation: rise .8s .18s ease both;
-}
-
-/* In-Card Content Ad Placement */
-.ad-container.ad-content {
-  width: min(100%, 430px);
-  margin: 16px auto 14px;
-  background: rgba(0, 0, 0, .16);
-  border: 1px dashed rgba(255, 255, 255, .07);
-  border-radius: 14px;
-}
-
-/* Discreet, Policy-Compliant Sponsor / Advertisement Label */
-.ad-label {
-  display: block;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  color: #64748b;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  user-select: none;
-  opacity: .85;
-}
-
-/* Internal Banner Wrapper for Monetag Zone Scripts */
-.ad-slot-frame {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 0;
-  width: 100%;
-}
-
-.ad-slot-frame iframe,
-.ad-slot-frame img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin: 0 auto;
-}
-
-/* Collapse empty/pending ad units smoothly to prevent layout shift */
-.ad-container.is-empty,
-.ad-container:not(.has-ad):not(:has(.ad-slot-frame > *)) {
-  display: none !important;
-}
-
 /* Keyframes */
 @keyframes rise {
   from {
@@ -1048,12 +956,6 @@ body.tv-device .tv-hint {
   .download-actions {
     gap: 9px;
     width: 100%;
-  }
-
-  .ad-container {
-    margin: 10px auto;
-    padding: 4px 6px;
-    border-radius: 12px;
   }
 
   .download-button {
